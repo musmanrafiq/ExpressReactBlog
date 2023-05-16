@@ -3,49 +3,26 @@ import './App.css';
 import Footer from './Layout/footer';
 import SideMenu from './Layout/sideMenu';
 import Home from './components/home';
+import Header from './Layout/header';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import DefaultLayout from './Layout/default-layout';
+import About from './components/about';
 
 function App() {
-  return (
-    <>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary shadow-sm mb-1">
-        <div className="container-fluid">
-          <a className="navbar-brand" href="/">Bootcamp's Blog</a>
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul className="navbar-nav">
-              <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">Features</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">Pricing</a>
-              </li>
-              <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown link
-                </a>
-                <ul className="dropdown-menu">
-                  <li><a className="dropdown-item" href="#">Action</a></li>
-                  <li><a className="dropdown-item" href="#">Another action</a></li>
-                  <li><a className="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-      <div className="container-fluid">
-        <div className="row content">
-          <SideMenu />
-          <Home />
-        </div>
-      </div>
 
-      <Footer />
+  return (
+
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route element={<DefaultLayout />}>
+            <Route index element={<Home />} />
+            <Route path='/about' element={<About />} />
+          </Route>
+
+
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
