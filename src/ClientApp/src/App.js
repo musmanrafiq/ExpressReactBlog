@@ -7,6 +7,7 @@ import Header from './Layout/header';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import DefaultLayout from './Layout/default-layout';
 import About from './components/about';
+import PostDetail from './components/postDetail';
 
 function App() {
 
@@ -15,11 +16,12 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
+
           <Route element={<DefaultLayout />}>
             <Route index element={<Home />} />
             <Route path='/about' element={<About />} />
+            <Route path='/post/:id' element={<PostDetail />} />
           </Route>
-
 
         </Routes>
       </BrowserRouter>

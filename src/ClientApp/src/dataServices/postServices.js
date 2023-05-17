@@ -1,33 +1,22 @@
-const postList = [
-    {
-        id: 1,
-        title: 'I Love Food',
-        body: 'Food is my passion. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-        author: 'Bootcamp',
-        date: Date.now().toString(),
-        labels: [
-            'Food', 'Good'
-        ],
-        detailsLink: 'abaocsfjlff'
-    },
-    {
-        id: 2,
-        title: 'I Love Food',
-        body: 'Food is my passion. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-        author: 'Bootcamp',
-        date: Date.now().toString(),
-        labels: [
-            'Food', 'Good'
-        ],
-        detailsLink: 'abaocsfjlff'
-    }
-];
+const postList = [];
 
 const PostServices = {
-
-
-    getPosts: function () {
-        return postList;
+    getPosts: async function () {
+        const postResponse = await fetch('http://localhost:4400/posts');
+        const posts = postResponse.json();
+        return posts;
+    },
+    getPostById: (id) => {
+        debugger;
+        const post = postList.find(x => x.id == id);
+        return post;
+    },
+    getPostsBySearch: (searchTerm) => {
+        searchTerm = searchTerm.toLocaleLowerCase();
+        const posts = postList.filter(x => x.title.toLocaleLowerCase()
+            .includes(searchTerm)
+            || x.body.toLocaleLowerCase().includes(searchTerm));
+        return posts;
     }
 };
 
