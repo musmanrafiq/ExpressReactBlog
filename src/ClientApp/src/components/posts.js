@@ -13,21 +13,22 @@ function Posts() {
         //debugger;
         console.log(param);
 
-        /*if (param) {
-            setPosts(PostServices.getPostsBySearch(param));
+        if (param) {
+            getSearchedPosts();
         }
         else {
-            setPosts(postList);
-        }*/
+            getPosts();
+        }
 
         async function getPosts() {
             const postList = await PostServices.getPosts();
-            debugger
             setPosts(postList);
         }
-
-        getPosts();;
-    }, []); // [param]);
+        async function getSearchedPosts() {
+            const postList = await PostServices.getPostsBySearch(param);
+            setPosts(postList);
+        }
+    }, [param]);
 
 
     const [posts, setPosts] = useState([]);

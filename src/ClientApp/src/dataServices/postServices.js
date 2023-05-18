@@ -11,11 +11,10 @@ const PostServices = {
         const post = postList.find(x => x.id == id);
         return post;
     },
-    getPostsBySearch: (searchTerm) => {
+    getPostsBySearch: async (searchTerm) => {
         searchTerm = searchTerm.toLocaleLowerCase();
-        const posts = postList.filter(x => x.title.toLocaleLowerCase()
-            .includes(searchTerm)
-            || x.body.toLocaleLowerCase().includes(searchTerm));
+        const postResponse = await fetch('http://localhost:4400/posts?search=' + searchTerm);
+        const posts = postResponse.json();
         return posts;
     }
 };

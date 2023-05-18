@@ -1,5 +1,25 @@
 var express = require('express');
 var cors = require('cors');
+const mongoosed = require("mongoose")
+const connectionString = "mongodb://127.0.0.1:27017/bootcamp";
+
+const postSchema = new mongoosed.Schema({
+    title: String
+})
+const postsd = mongoosed.model("Post", postSchema)
+
+/*
+const mongoose = mongoosed.connect(connectionString);
+    mongoose.then(() => {
+        console.log("Connected to the database!");
+    })
+        .catch(err => {
+            console.log("Cannot connect to the database!", err);
+            process.exit();
+        });
+
+    postsd.create({ title: 'hi' }).then(() => { });
+    const housesss = await postsd.find({});*/
 
 // created object of express app
 var app = express();
@@ -14,8 +34,12 @@ app.get('/', (req, res) => {
 });
 
 
-app.get('/posts', (req, res) => {
 
+app.get('/posts', async (req, res) => {
+
+    // getting query from request
+    const { query } = req;
+    debugger;
     var posts = [
         {
             id: 1,
@@ -52,6 +76,9 @@ app.get('/posts', (req, res) => {
         }
     ];
 
+    if (query.search) {
+        posts = posts.filter(x => x.title.toLocaleLowerCase().includes(query.search.toLocaleLowerCase()));
+    }
     res.json(posts);
 });
 
