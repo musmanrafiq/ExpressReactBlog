@@ -4,6 +4,7 @@ const PostServices = {
     getPosts: async function () {
         const postResponse = await fetch('http://localhost:4400/posts');
         const posts = postResponse.json();
+        postList = posts;
         return posts;
     },
     getPostById: (id) => {
@@ -15,6 +16,7 @@ const PostServices = {
         searchTerm = searchTerm.toLocaleLowerCase();
         const postResponse = await fetch('http://localhost:4400/posts?search=' + searchTerm);
         const posts = postResponse.json();
+        postList = posts;
         return posts;
     },
     addPost: async function (body) {
