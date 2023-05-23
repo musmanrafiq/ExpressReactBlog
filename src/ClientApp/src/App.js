@@ -12,6 +12,7 @@ import AdminLayout from './Layout/adminLayout';
 import Login from './components/login';
 import AuthLayout from './Layout/authLayout';
 import Dashboard from './components/admin/dashboard';
+import AddPost from './components/admin/addpost';
 
 function App() {
 
@@ -33,6 +34,7 @@ function App() {
 
           <Route path='/admin' element={<AdminLayout />}>
             <Route index element={<Dashboard />} />
+            <Route path='/admin/post/add' element={<AddPost />} />
           </Route>
         </Routes>
       </BrowserRouter>
