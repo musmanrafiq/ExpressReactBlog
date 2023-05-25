@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const mongoosed = require("mongoose")
-const connectionString = "mongodb://127.0.0.1:27017/myblog";
+const connectionString = "mongodb+srv://techbyneo_1:a7x2EedIPmu4p38x@techbyneo-1.yj2xqm3.mongodb.net/expressreactblog?retryWrites=true&w=majority";
 const jwt = require('jsonwebtoken')
 const jwtSecretKey = "dlkjdrelkjvlkjerlkjelkr";
 
